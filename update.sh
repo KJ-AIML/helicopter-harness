@@ -15,7 +15,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ -f "$SCRIPT_DIR/.helicopter-harness/HARNESS.md" ]; then
   SOURCE="$SCRIPT_DIR/.helicopter-harness"
-elif [ -f "$(pwd)/.helicopter-harness/HARNESS.md" ]; then
+elif [ -f "$(pwd)/.helicopter-harness/HARNESS.md" ] && [ -f "$(pwd)/install.sh" ]; then
   SOURCE="$(pwd)/.helicopter-harness"
 else
   echo "No local repository checkout with .helicopter-harness was found." >&2
@@ -64,4 +64,3 @@ if [ "$RESET_STATE" -eq 0 ]; then
   echo "Preserved state/. Use --reset-state to replace state from the repo checkout."
 fi
 echo "AGENTS.md and CLAUDE.md were not modified."
-

@@ -82,7 +82,7 @@ Explicit parent:
 This installs to:
 
 ```text
-D:\KJ\Axtra-Intelion.helicopter-harness
+D:\KJ\Axtra-Intelion\.helicopter-harness
 ```
 
 ## macOS/Linux Install
@@ -111,7 +111,7 @@ $HOME/work/axtra-intelion/.helicopter-harness
 Start from this parent workspace. Read the Helicopter-Harness source of truth first, identify the target repo, read its profile if present, then inspect repo-local docs. Update the harness current-task state before non-trivial edits. Task: <describe task>.
 ```
 
-For a repo checkout, the source of truth is `.helicopter-harness/HARNESS.md`. For an installed Windows parent workspace using `install.ps1`, it is `<Parent>.helicopter-harness\HARNESS.md`.
+For a repo checkout, the source of truth is `.helicopter-harness/HARNESS.md`. For an installed Windows parent workspace using `install.ps1`, it is `<Parent>\.helicopter-harness\HARNESS.md`.
 
 ## Repo Profiles
 
@@ -203,4 +203,3 @@ Uninstall removes only the installed harness directory. It does not delete repos
 Keep the core tool-neutral. Put agent-specific behavior in adapters. Keep hooks optional. Do not encode repo policy in global protocol when it belongs in a repo profile.
 
 Read `CONTRIBUTING.md` before opening a PR.
-

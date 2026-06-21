@@ -5,7 +5,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $ParentFull = [System.IO.Path]::GetFullPath($Parent)
-$Target = "$ParentFull.helicopter-harness"
+$Target = Join-Path $ParentFull ".helicopter-harness"
 
 if (-not (Test-Path $Target)) {
   Write-Host "No installed harness found at $Target"
@@ -20,4 +20,3 @@ Write-Host ""
 Write-Host "Manual cleanup:"
 Write-Host "  Review any AGENTS.md or CLAUDE.md snippets you created and remove them if no longer needed."
 Write-Host "  Repos were not deleted."
-

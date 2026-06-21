@@ -12,11 +12,6 @@ function Find-SourceHarness {
     return $candidate
   }
 
-  $cwdCandidate = Join-Path (Get-Location).Path ".helicopter-harness"
-  if (Test-Path (Join-Path $cwdCandidate "HARNESS.md")) {
-    return $cwdCandidate
-  }
-
   return $null
 }
 
@@ -29,17 +24,11 @@ if (-not $Source) {
 }
 
 if ([string]::IsNullOrWhiteSpace($Parent)) {
-  $cwd = (Get-Location).Path
-  if ((Split-Path -Leaf $cwd) -eq ".helicopter-harness") {
-    $Target = $cwd
-  } elseif (Test-Path (Join-Path $cwd "HARNESS.md")) {
-    $Target = $cwd
-  } else {
-    $Target = "$cwd.helicopter-harness"
-  }
+  $ParentFull = (Get-Location).Path
+  $Target = Join-Path $ParentFull ".helicopter-harness"
 } else {
   $ParentFull = [System.IO.Path]::GetFullPath($Parent)
-  $Target = "$ParentFull.helicopter-harness"
+  $Target = Join-Path $ParentFull ".helicopter-harness"
 }
 
 if (-not (Test-Path $Target)) {

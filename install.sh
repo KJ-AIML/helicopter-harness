@@ -15,10 +15,10 @@ fi
 mkdir -p "$TARGET"
 cp -R "$SOURCE"/. "$TARGET"/
 
-AGENTS_PATH="$TARGET/AGENTS.md"
-CLAUDE_PATH="$TARGET/CLAUDE.md"
-AGENTS_SNIPPET="Read adapters/codex/AGENTS.md first, then HARNESS.md."
-CLAUDE_SNIPPET="Read adapters/claude/CLAUDE.md first, then HARNESS.md."
+AGENTS_PATH="$PARENT_FULL/AGENTS.md"
+CLAUDE_PATH="$PARENT_FULL/CLAUDE.md"
+AGENTS_SNIPPET="Read .helicopter-harness/adapters/codex/AGENTS.md first."
+CLAUDE_SNIPPET="Read .helicopter-harness/adapters/claude/CLAUDE.md first."
 
 if [ -e "$AGENTS_PATH" ]; then
   echo "AGENTS.md already exists at $AGENTS_PATH"
@@ -50,9 +50,8 @@ Helicopter-Harness installed to:
 
 Next steps:
   1. Add repo profiles under $TARGET/profiles
-  2. Start agents from $TARGET
+  2. Start agents from $PARENT_FULL
   3. Use this first-run prompt:
 
 Start from this parent workspace. Read HARNESS.md, identify the target repo, read its profile if present, then inspect repo-local docs. Update state/current-task.md before non-trivial edits. Task: <describe task>.
 EOF
-

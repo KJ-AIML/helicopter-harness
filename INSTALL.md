@@ -11,7 +11,7 @@ Use the install scripts from the repository root.
 Installs to:
 
 ```text
-D:\KJ\Axtra-Intelion.helicopter-harness
+D:\KJ\Axtra-Intelion\.helicopter-harness
 ```
 
 ## macOS/Linux
@@ -45,4 +45,3 @@ Read the Helicopter-Harness Claude adapter first.
 ## Safety
 
 The install scripts do not install global rules, delete repos, overwrite existing parent agent files, or enable hooks automatically.
-

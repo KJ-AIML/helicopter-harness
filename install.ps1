@@ -12,7 +12,7 @@ if (-not (Test-Path $Source)) {
 }
 
 $ParentFull = [System.IO.Path]::GetFullPath($Parent)
-$Target = "$ParentFull.helicopter-harness"
+$Target = Join-Path $ParentFull ".helicopter-harness"
 
 New-Item -ItemType Directory -Force -Path $Target | Out-Null
 
@@ -20,11 +20,11 @@ Get-ChildItem -LiteralPath $Source -Force | ForEach-Object {
   Copy-Item -LiteralPath $_.FullName -Destination $Target -Recurse -Force
 }
 
-$agentsPath = Join-Path $Target "AGENTS.md"
-$claudePath = Join-Path $Target "CLAUDE.md"
+$agentsPath = Join-Path $ParentFull "AGENTS.md"
+$claudePath = Join-Path $ParentFull "CLAUDE.md"
 
-$agentsSnippet = "Read adapters/codex/AGENTS.md first, then HARNESS.md."
-$claudeSnippet = "Read adapters/claude/CLAUDE.md first, then HARNESS.md."
+$agentsSnippet = "Read .helicopter-harness/adapters/codex/AGENTS.md first."
+$claudeSnippet = "Read .helicopter-harness/adapters/claude/CLAUDE.md first."
 
 if (Test-Path $agentsPath) {
   Write-Host "AGENTS.md already exists at $agentsPath"
@@ -61,8 +61,7 @@ Write-Host "  $Target"
 Write-Host ""
 Write-Host "Next steps:"
 Write-Host "  1. Add repo profiles under $Target\profiles"
-Write-Host "  2. Start agents from $Target"
+Write-Host "  2. Start agents from $ParentFull"
 Write-Host "  3. Use this first-run prompt:"
 Write-Host ""
 Write-Host "Start from this parent workspace. Read HARNESS.md, identify the target repo, read its profile if present, then inspect repo-local docs. Update state/current-task.md before non-trivial edits. Task: <describe task>."
-
