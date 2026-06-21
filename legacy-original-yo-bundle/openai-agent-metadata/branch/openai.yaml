@@ -1,0 +1,4 @@
+interface:
+  display_name: "Branch"
+  short_description: "Branch and PR readiness conventions"
+  default_prompt: "Use branch to check branch state before opening a PR."

@@ -1,0 +1,47 @@
+{
+  "name": "Helicopter-Harness",
+  "version": "0.1.0",
+  "purpose": "Parent-level, tool-neutral AI development harness for one workspace containing many repos and many coding agents.",
+  "install_mode": "parent-workspace",
+  "source_of_truth": ".helicopter-harness/HARNESS.md",
+  "skills": [
+    "audit",
+    "branch",
+    "debug",
+    "deps",
+    "design",
+    "engineering",
+    "feature",
+    "fix-loop",
+    "flow",
+    "gh-write",
+    "impact",
+    "incident",
+    "release",
+    "test-coverage",
+    "verify-premise",
+    "workflow"
+  ],
+  "adapters": [
+    "codex",
+    "claude",
+    "generic"
+  ],
+  "hooks_summary": {
+    "safe_context_injection_hooks": [
+      "hooks/scripts/claude-session-baseline.sh"
+    ],
+    "logging_reporting_hooks": [],
+    "risky_command_blocking_hooks": [],
+    "tool_specific_hooks": [
+      "Claude Code SessionStart example in hooks/examples/"
+    ],
+    "unused_obsolete_hooks": []
+  },
+  "state": {
+    "current_task": "state/current-task.md",
+    "decisions": "state/decisions.md",
+    "runs": "state/runs/",
+    "reports": "state/reports/"
+  }
+}

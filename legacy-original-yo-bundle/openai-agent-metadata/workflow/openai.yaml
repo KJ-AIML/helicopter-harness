@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workflow"
+  short_description: "Deep find, refute, synthesize reviews"
+  default_prompt: "Use workflow to review this area deeply."

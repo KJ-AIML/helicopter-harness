@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Engineering"
+  short_description: "Senior software engineering quality gate"
+  default_prompt: "Use $yo-engineering to raise this work to senior engineering quality."

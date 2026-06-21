@@ -1,0 +1,10 @@
+{
+  "name": "Helicopter-Harness",
+  "version": "0.1.0",
+  "purpose": "Parent-level, tool-neutral AI development harness.",
+  "install_mode": "parent-workspace",
+  "source_of_truth": ".helicopter-harness/HARNESS.md",
+  "harness": ".helicopter-harness/",
+  "manifest": ".helicopter-harness/manifest.json"
+}
+

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fix Loop"
+  short_description: "Triage, fix, and verify findings"
+  default_prompt: "Use fix-loop to clear this wave of findings."

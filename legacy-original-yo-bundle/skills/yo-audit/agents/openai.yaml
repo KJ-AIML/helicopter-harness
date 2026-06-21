@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Audit"
+  short_description: "Read-only verification of code changes"
+  default_prompt: "Use $yo-audit to independently verify this fix or PR."

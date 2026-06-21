@@ -1,0 +1,54 @@
+# Helicopter-Harness
+
+Helicopter-Harness is the source of truth for this parent workspace. It is tool-neutral: Codex, Claude Code, and any other local coding agent must use the same harness protocols, repo profiles, state files, hooks, and templates.
+
+## Operating Model
+
+- The agent starts from the parent workspace that contains multiple repos and `.helicopter-harness/`.
+- The agent must identify the target repo before editing.
+- The agent must read the relevant profile in `.helicopter-harness/profiles/` when one exists.
+- The agent must also read repo-local `AGENTS.md`, `CLAUDE.md`, `README*`, package files, build files, and test configuration where relevant.
+- The agent must create or update `.helicopter-harness/state/current-task.md` before non-trivial edits.
+- The agent must preserve dirty user work. Never revert, overwrite, move, or delete user changes unless explicitly asked.
+- The agent must not assume branch policy, test commands, generated-file policy, release process, deployment policy, or ownership unless a repo profile or repo docs say so.
+- The agent must not run expensive loops repeatedly. Use the smallest useful check first, then widen only when evidence requires it.
+- After two failed fix attempts, stop coding and write a diagnosis with evidence, likely causes, and the next smallest action.
+
+## Risk Tiers
+
+- `S0`: Tiny direct change. Use the smallest relevant check first.
+- `S1`: Normal local fix or feature. Use focused verification and preserve scope.
+- `S2`: Cross-file, API, data, security, concurrency, user-flow, or production-impacting work. Requires plan, impact analysis, verification evidence, and rollback notes where relevant.
+- `S3`: One-way-door or high-blast-radius action such as production deploy, destructive migration, force push, bypassing protection, credential rotation, or irreversible data change. Requires explicit user approval and rollback or mitigation notes.
+
+## Required Task State
+
+Before non-trivial edits, update `.helicopter-harness/state/current-task.md` with:
+
+- target repo
+- task
+- mode
+- risk tier
+- files expected to change
+- dirty files observed
+- planned verification
+- current status
+- failed attempts count
+- next smallest action
+
+## Skill Routing
+
+- Use `skills/flow` for ambiguous task routing.
+- Use `skills/engineering` for risk tiering and done criteria.
+- Use `skills/verify-premise` before fixing a claimed bug or acting on a disputed premise.
+- Use `skills/impact` before edits that may affect callers, data, APIs, UI flows, or operations.
+- Use `skills/debug` to reproduce, isolate, and explain confirmed bugs.
+- Use `skills/fix-loop` after failed tests or repeated fix attempts.
+- Use `skills/audit` for read-only verification of a diff, PR, or claimed fix.
+- Use `skills/test-coverage` to identify missing or weak tests.
+- Use `skills/branch`, `skills/release`, `skills/deps`, `skills/incident`, and `skills/gh-write` only when their scoped operation applies.
+
+## Adapter Boundary
+
+Tool-specific setup lives only in `.helicopter-harness/adapters/`. Core harness protocols must say "the agent must", not "Codex should" or "Claude should".
+

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature"
+  short_description: "Spec-driven feature delivery loop"
+  default_prompt: "Use feature to build this feature end to end."

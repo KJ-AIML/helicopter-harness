@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yo Flow"
+  short_description: "Route work through Yo skills and risk gates"
+  default_prompt: "Use $yo-flow to route this work through the right Yo skill and engineering gate."

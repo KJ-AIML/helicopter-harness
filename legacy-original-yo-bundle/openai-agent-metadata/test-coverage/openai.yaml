@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test Coverage"
+  short_description: "Tests that lock behavior and regressions"
+  default_prompt: "Use test-coverage to add the right regression test."
