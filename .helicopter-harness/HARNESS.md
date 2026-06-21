@@ -46,9 +46,9 @@ Before non-trivial edits, update `.helicopter-harness/state/current-task.md` wit
 - Use `skills/fix-loop` after failed tests or repeated fix attempts.
 - Use `skills/audit` for read-only verification of a diff, PR, or claimed fix.
 - Use `skills/test-coverage` to identify missing or weak tests.
+- Use `skills/test-validation` to validate repo profile commands, classify failures, and confirm safe non-mutating verification.
 - Use `skills/branch`, `skills/release`, `skills/deps`, `skills/incident`, and `skills/gh-write` only when their scoped operation applies.
 
 ## Adapter Boundary
 
 Tool-specific setup lives only in `.helicopter-harness/adapters/`. Core harness protocols must say "the agent must", not "Codex should" or "Claude should".
-

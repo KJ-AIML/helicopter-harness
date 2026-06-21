@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.2 - 2026-06-21
+
+- Added `test-validation` skill for validating repo profile commands, classifying failures, and confirming safe non-mutating verification.
+- Added safe/mutating/destructive command classification with flag examples and risk tiers.
+- Added dependency preflight and post-run git status verification protocol.
+- Added 6-category failure classification (environment, dependency, command-selection, profile, code, harness).
+- Updated manifest skills list with `test-validation`.
+- Updated HARNESS.md Skill Routing section.
+- Fixed missing skill lookup / ENOENT for `test-validation` mode.
+- Validated sandbox update preserves existing profiles and state.
+- Validated against `axga-harness-agent` sandbox without modifying target repo source.
+
 ## 0.1.1 - 2026-06-21
 
 - Fix Windows install target path to use `<Parent>\.helicopter-harness`.
