@@ -1,4 +1,0 @@
-interface:
-  display_name: "Audit"
-  short_description: "Read-only verification of code changes"
-  default_prompt: "Use audit to independently verify this fix or PR."

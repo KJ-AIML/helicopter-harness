@@ -11,6 +11,11 @@ if (-not (Test-Path $Source)) {
   throw "Source harness not found: $Source"
 }
 
+if (-not (Test-Path -LiteralPath $Parent -PathType Container)) {
+    Write-Error "Parent directory does not exist: $Parent`nCreate it first or pass an existing directory."
+    exit 1
+}
+
 $ParentFull = [System.IO.Path]::GetFullPath($Parent)
 $Target = Join-Path $ParentFull ".helicopter-harness"
 

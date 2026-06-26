@@ -33,22 +33,23 @@ Current adapters:
 
 - Codex: `.helicopter-harness/adapters/codex/`
 - Claude Code: `.helicopter-harness/adapters/claude/`
+- Cursor: `.helicopter-harness/adapters/cursor/`
 - Generic local coding agents: `.helicopter-harness/adapters/generic/`
 
-Future adapters can be added for Cursor, Windsurf, Cline, Gemini, Pi, OpenCode, and other local agent runtimes. The adapter is not the source of truth; the harness is.
+Future adapters can be added for Windsurf, Cline, Gemini, Pi, OpenCode, and other local agent runtimes. The adapter is not the source of truth; the harness is.
 
 ## Quick Install
 
 Windows PowerShell:
 
 ```powershell
-.\install.ps1 -Parent "D:\KJ\Axtra-Intelion"
+.\install.ps1 -Parent "D:\MyWorkspace"
 ```
 
 macOS/Linux:
 
 ```bash
-./install.sh "$HOME/work/axtra-intelion"
+./install.sh "$HOME/work/my-workspace"
 ```
 
 ## Safe Install
@@ -76,13 +77,13 @@ Default parent is the current directory:
 Explicit parent:
 
 ```powershell
-.\install.ps1 -Parent "D:\KJ\Axtra-Intelion"
+.\install.ps1 -Parent "D:\MyWorkspace"
 ```
 
 This installs to:
 
 ```text
-D:\KJ\Axtra-Intelion\.helicopter-harness
+D:\MyWorkspace\.helicopter-harness
 ```
 
 ## macOS/Linux Install
@@ -96,13 +97,13 @@ Default parent is the current directory:
 Explicit parent:
 
 ```bash
-./install.sh "$HOME/work/axtra-intelion"
+./install.sh "$HOME/work/my-workspace"
 ```
 
 This installs to:
 
 ```text
-$HOME/work/axtra-intelion/.helicopter-harness
+$HOME/work/my-workspace/.helicopter-harness
 ```
 
 ## First-Run Prompt
@@ -112,6 +113,107 @@ Start from this parent workspace. Read the Helicopter-Harness source of truth fi
 ```
 
 For a repo checkout, the source of truth is `.helicopter-harness/HARNESS.md`. For an installed Windows parent workspace using `install.ps1`, it is `<Parent>\.helicopter-harness\HARNESS.md`.
+
+## Example Session
+
+This walkthrough shows how the harness changes agent behavior. The scenario: a user asks the agent to add a rate-limiting middleware to the `api` repo.
+
+### 1. The workspace the agent sees
+
+```text
+D:\MyWorkspace\
+├── .helicopter-harness\
+│   ├── HARNESS.md
+│   ├── profiles\
+│   │   └── api.md
+│   ├── skills\
+│   ├── state\
+│   │   └── current-task.md
+│   └── templates\
+├── api\
+│   ├── src\
+│   ├── tests\
+│   └── README.md
+└── frontend\
+    └── ...
+```
+
+### 2. The user types
+
+```text
+Start from this parent workspace. Read HARNESS.md, identify the target repo,
+read its profile, then inspect repo-local docs. Update state before non-trivial
+edits. Task: Add rate-limiting middleware to the API. 100 requests per minute
+per API key, return 429 with a Retry-After header.
+```
+
+### 3. What the agent reads (in order)
+
+1. `.helicopter-harness/HARNESS.md` — learns the operating model, risk tiers, skill routing
+2. `.helicopter-harness/profiles/api.md` — learns the api repo's branch policy, test commands, generated-file rules
+3. `api/README.md` and `api/package.json` — learns the framework (Express), existing middleware stack, test runner
+4. `.helicopter-harness/skills/impact/SKILL.md` — this is a shared surface edit, so impact analysis applies
+
+### 4. The agent writes task state before editing
+
+The agent updates `.helicopter-harness/state/current-task.md`:
+
+```markdown
+Target repo: api
+Task: Add rate-limiting middleware (100 req/min per API key, 429 + Retry-After)
+Mode: feature
+Risk tier: S1
+Files expected to change:
+  - src/middleware/rateLimit.js (new)
+  - src/app.js (register middleware)
+  - tests/middleware/rateLimit.test.js (new)
+Dirty files observed: none
+Planned verification: npm test
+Current status: in_progress
+Failed attempts count: 0
+Next smallest action: Read existing middleware pattern in src/app.js
+```
+
+### 5. The agent makes the edit
+
+Following the api profile's conventions (CommonJS, existing middleware pattern), the agent:
+
+- Creates `src/middleware/rateLimit.js` matching the style of `src/middleware/auth.js`
+- Registers it in `src/app.js` after auth, before routes
+- Writes `tests/middleware/rateLimit.test.js` covering: under limit passes, at limit returns 429, Retry-After header present, different API keys tracked independently
+
+### 6. Verification
+
+The agent runs the verification command from the api profile:
+
+```text
+$ npm test
+  47 passing (2.1s)
+  0 failing
+```
+
+The agent also checks `git status` to confirm only the three expected files changed.
+
+### 7. State update after completion
+
+The agent updates `current-task.md`:
+
+```markdown
+Current status: complete
+Failed attempts count: 0
+Next smallest action: none
+```
+
+### What the harness changed
+
+Without the harness, the agent might have:
+
+- Guessed the test command (`jest`? `vitest`? `mocha`?)
+- Used ES modules because the agent prefers them, ignoring the repo's CommonJS convention
+- Skipped task state, so a second agent picking up the work has no context
+- Not checked impact on callers before adding middleware to the stack
+
+The harness doesn't add complexity. It makes the agent read before writing.
 
 ## Repo Profiles
 
@@ -173,11 +275,11 @@ Read:
 From the repo checkout:
 
 ```powershell
-.\update.ps1 -Parent "D:\KJ\Axtra-Intelion"
+.\update.ps1 -Parent "D:\MyWorkspace"
 ```
 
 ```bash
-./update.sh "$HOME/work/axtra-intelion"
+./update.sh "$HOME/work/my-workspace"
 ```
 
 By default, update preserves harness state. Use `-ResetState` or `--reset-state` only when you explicitly want to reset `.helicopter-harness/state/`.
@@ -187,13 +289,13 @@ By default, update preserves harness state. Use `-ResetState` or `--reset-state`
 Windows:
 
 ```powershell
-.\uninstall.ps1 -Parent "D:\KJ\Axtra-Intelion"
+.\uninstall.ps1 -Parent "D:\MyWorkspace"
 ```
 
 macOS/Linux:
 
 ```bash
-./uninstall.sh "$HOME/work/axtra-intelion"
+./uninstall.sh "$HOME/work/my-workspace"
 ```
 
 Uninstall removes only the installed harness directory. It does not delete repos or automatically edit `AGENTS.md` / `CLAUDE.md`.

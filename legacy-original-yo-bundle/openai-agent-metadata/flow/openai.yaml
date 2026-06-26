@@ -1,4 +1,0 @@
-interface:
-  display_name: "Flow"
-  short_description: "Route work through harness skills and risk gates"
-  default_prompt: "Use flow to route this work through the right harness skill and engineering gate."

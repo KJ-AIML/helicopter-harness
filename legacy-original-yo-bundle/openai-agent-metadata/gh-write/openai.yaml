@@ -1,4 +1,0 @@
-interface:
-  display_name: "GH Write"
-  short_description: "GitHub issue and PR writing voice"
-  default_prompt: "Use gh-write to draft GitHub-ready text."

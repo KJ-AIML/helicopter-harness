@@ -1,4 +1,0 @@
-interface:
-  display_name: "Yo Verify Premise"
-  short_description: "Verify claims before acting on them"
-  default_prompt: "Use $yo-verify-premise to confirm this bug before fixing it."

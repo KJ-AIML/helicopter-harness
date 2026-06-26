@@ -1,4 +1,0 @@
-interface:
-  display_name: "Verify Premise"
-  short_description: "Verify claims before acting on them"
-  default_prompt: "Use verify-premise to confirm this bug before fixing it."

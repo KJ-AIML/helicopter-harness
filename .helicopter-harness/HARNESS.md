@@ -36,6 +36,23 @@ Before non-trivial edits, update `.helicopter-harness/state/current-task.md` wit
 - failed attempts count
 - next smallest action
 
+## Done Criteria
+
+A task is done when:
+
+- The verification command from the repo profile (or the smallest relevant check) ran and passed.
+- `git status` shows only the files listed in "files expected to change" were modified. No unintended files changed.
+- No new errors, warnings, or test failures were introduced.
+- Task state in `current-task.md` is updated: status set to `complete`, failed attempts count recorded.
+
+If verification fails:
+
+1. Increment the failed attempts count in `current-task.md`.
+2. Record what failed and why in the state file.
+3. Route to `skills/fix-loop` for disciplined retry, or stop and write a diagnosis after two failed attempts.
+
+Do not mark a task complete because "most tests pass" or "it looks right." Run the command, read the output, confirm with evidence.
+
 ## Skill Routing
 
 - Use `skills/flow` for ambiguous task routing.

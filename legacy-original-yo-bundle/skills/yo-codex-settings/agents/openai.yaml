@@ -1,4 +1,0 @@
-interface:
-  display_name: "Yo Codex Settings"
-  short_description: "Codex session baseline and ramp-up"
-  default_prompt: "Use $yo-codex-settings to ramp this Codex session correctly."

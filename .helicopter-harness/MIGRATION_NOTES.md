@@ -25,8 +25,7 @@
 - Tool-specific Claude setup moved from `yo-claude-settings` into `adapters/claude/`.
 - The Claude baseline hook moved to `hooks/scripts/claude-session-baseline.sh` with configuration examples in `hooks/examples/`.
 - Useful skill `references/` directories were preserved under the renamed skill directories.
-- Legacy `agents/openai.yaml` metadata was archived at `legacy-original-yo-bundle/openai-agent-metadata/`.
-- The original source bundle was archived at `legacy-original-yo-bundle/` instead of being deleted.
+- Legacy `agents/openai.yaml` metadata and the original yo-* source bundle were removed. Git history preserves them.
 
 ## Merged Or Separated
 
@@ -45,6 +44,6 @@
 ## Manual Review Still Needed
 
 - Copied legacy `references/` may still contain assumptions that need review before treating them as active policy.
-- Legacy OpenAI agent metadata under `legacy-original-yo-bundle/openai-agent-metadata/` is preserved for reference and is not core harness policy.
+- Legacy OpenAI agent metadata was removed from the repository. Git history preserves it for reference.
 - The Claude SessionStart hook is preserved but should be reviewed before enabling in any user-level settings file.
 - Repo profile examples are placeholders and must be filled with actual repo policy before relying on them.

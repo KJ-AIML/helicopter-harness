@@ -1,25 +1,24 @@
 # Current Task
 
-Target repo: Unset
+Target repo:
 
-Task: Unset
+Task:
 
-Mode: Unset
+Mode:
 
-Risk tier: Unset
+Risk tier:
 
-Files expected to change:
-- Unset
+Files expected to change
+-
 
-Dirty files observed:
-- Unset
+Dirty files observed
+-
 
-Planned verification:
-- Unset
+Planned verification
+-
 
-Current status: Not started
+Current status:
 
 Failed attempts count: 0
 
-Next smallest action: Identify target repo and read profile/docs.
-
+Next smallest action:

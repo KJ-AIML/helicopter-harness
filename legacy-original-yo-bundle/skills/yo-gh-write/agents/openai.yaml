@@ -1,4 +1,0 @@
-interface:
-  display_name: "Yo GH Write"
-  short_description: "GitHub issue and PR writing voice"
-  default_prompt: "Use $yo-gh-write to draft GitHub-ready text."

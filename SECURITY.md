@@ -10,9 +10,10 @@ Hooks are optional. No destructive hook should be enabled without explicit user 
 
 The bundled hook is a context-injection example. It should not edit files, run repo commands, deploy, delete, or block commands.
 
-## Reporting Security Issues
+## Reporting a Vulnerability
 
-Report security issues through GitHub issues or contact the maintainer privately when a private disclosure channel is added.
+To report a security issue, open a [GitHub Security Advisory](https://github.com/KJ-AIML/helicopter-harness/security/advisories/new) in this repository.
 
-Placeholder private contact: `security@example.invalid`
+Do not open a public issue for security vulnerabilities.
 
+We will acknowledge receipt within 72 hours and aim to ship a fix or mitigation within 14 days for confirmed issues.

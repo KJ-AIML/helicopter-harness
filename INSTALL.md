@@ -5,25 +5,25 @@ Use the install scripts from the repository root.
 ## Windows
 
 ```powershell
-.\install.ps1 -Parent "D:\KJ\Axtra-Intelion"
+.\install.ps1 -Parent "D:\MyWorkspace"
 ```
 
 Installs to:
 
 ```text
-D:\KJ\Axtra-Intelion\.helicopter-harness
+D:\MyWorkspace\.helicopter-harness
 ```
 
 ## macOS/Linux
 
 ```bash
-./install.sh "$HOME/work/axtra-intelion"
+./install.sh "$HOME/work/my-workspace"
 ```
 
 Installs to:
 
 ```text
-$HOME/work/axtra-intelion/.helicopter-harness
+$HOME/work/my-workspace/.helicopter-harness
 ```
 
 ## Adapter Pointers
