@@ -7,18 +7,26 @@ Helicopter-Harness can be used with [Pi](https://pi.dev) in two ways. They are n
 ### 1. Pi package install (agent-facing)
 
 ```bash
-pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.0
+pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.2
 ```
 
-This installs the Pi package. Pi discovers harness skills via the `pi` key in `package.json`, which points to `.helicopter-harness/skills/`.
+This installs the Pi package, which does two things:
 
 **What this does:**
 
-- Exposes harness skills (audit, branch, debug, deps, design, engineering, feature, fix-loop, flow, gh-write, impact, incident, release, test-coverage, test-validation, verify-premise, workflow) to Pi's skill system.
-- Does **not** create `.helicopter-harness/` in any workspace.
-- Does **not** set up parent-workspace harness state, profiles, or adapter pointer files.
+1. **Loads Helicopter-Harness skills** into Pi's skill system (audit, branch, debug, deps, design, engineering, feature, fix-loop, flow, gh-write, impact, incident, release, test-coverage, test-validation, verify-premise, workflow) via the `pi.skills` key in `package.json`.
+2. **Loads a lightweight Pi extension** (`extensions/pi-extension.js`) that:
+   - Announces `Helicopter-Harness loaded` on session start
+   - Detects whether workspace harness is installed in the current folder
+   - Provides `/helicopter-install` (alias `/hh-install`) command to install the workspace harness
 
-**Status: supported.** Verified with `pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.0` (Pi v0.80.2). Pi resolved the GitHub tag, cloned to `~/.pi/agent/git/`, parsed `package.json` `pi` key, registered the package, and exposed the skills path.
+**What this does NOT do:**
+
+- Does **not** automatically create `.helicopter-harness/` in any workspace on startup.
+- Does **not** set up parent-workspace harness state, profiles, or adapter pointer files automatically.
+- Use `/helicopter-install` inside Pi to install the workspace harness into the current folder.
+
+**Status: supported.** Verified with Pi v0.80.2 (local path install). Remote `git:` install pending v0.2.2 tag.
 
 ### 2. Workspace harness install (recommended)
 
@@ -40,7 +48,7 @@ Or run the installer manually:
 # macOS/Linux
 git clone https://github.com/KJ-AIML/helicopter-harness.git
 cd helicopter-harness
-git checkout v0.2.0
+git checkout v0.2.2
 ./install.sh "<workspace path>"
 ```
 
@@ -48,7 +56,7 @@ git checkout v0.2.0
 # Windows
 git clone https://github.com/KJ-AIML/helicopter-harness.git
 cd helicopter-harness
-git checkout v0.2.0
+git checkout v0.2.2
 .\install.ps1 -Parent "<workspace path>"
 ```
 

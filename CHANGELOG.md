@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.2.2 - 2026-06-28
+
+### Fixed
+
+- Fixed Pi skill YAML frontmatter conflicts in `incident` and `workflow` skills (descriptions with colons caused "Nested mappings" parse errors).
+
+### Added
+
+- Added lightweight Pi extension (`extensions/pi-extension.js`) that:
+  - Announces `Helicopter-Harness loaded` on session start
+  - Detects whether workspace harness is installed in current folder
+  - Provides `/helicopter-install` (alias `/hh-install`) command to install workspace harness into current folder
+  - Asks for confirmation before modifying workspace
+  - Verifies install after completion
+- Extension is safe and non-destructive: no auto-install on startup, no global install, no file deletion.
+
+### Changed
+
+- Updated `package.json` `pi` manifest to include both `extensions` and `skills`.
+- Updated docs to clarify Pi package install now loads skills + extension.
+- Clarified that `pi install` does not auto-create `.helicopter-harness/`; use `/helicopter-install` for workspace setup.
+
 ## 0.2.1 - 2026-06-28
 
 ### Docs-only hotfix

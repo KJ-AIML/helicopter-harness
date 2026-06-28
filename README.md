@@ -54,7 +54,7 @@ Install this repo into the current folder as a parent-workspace harness:
 
 https://github.com/KJ-AIML/helicopter-harness
 
-Use the latest stable tag (v0.2.0). Do not install globally. Treat the current
+Use the latest stable tag (v0.2.2). Do not install globally. Treat the current
 directory as the workspace. Verify .helicopter-harness/HARNESS.md, AGENTS.md,
 and CLAUDE.md exist after install.
 ```
@@ -64,7 +64,7 @@ and CLAUDE.md exist after install.
 ```powershell
 git clone https://github.com/KJ-AIML/helicopter-harness.git
 cd helicopter-harness
-git checkout v0.2.0
+git checkout v0.2.2
 .\install.ps1 -Parent "<current workspace path>"
 ```
 
@@ -75,7 +75,7 @@ Default parent is the current directory — omit `-Parent` to install into `.`.
 ```bash
 git clone https://github.com/KJ-AIML/helicopter-harness.git
 cd helicopter-harness
-git checkout v0.2.0
+git checkout v0.2.2
 ./install.sh "<current workspace path>"
 ```
 
@@ -84,17 +84,30 @@ Default parent is the current directory — omit the argument to install into `.
 ### Pi agent harness
 
 ```bash
-pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.0
+pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.2
 ```
 
-This installs the Pi-facing package/adapter. It exposes harness skills to Pi via the `pi` key in `package.json`.
+This installs the Pi package, which does two things:
+
+1. **Loads Helicopter-Harness skills** into Pi's skill system (audit, branch, debug, deps, design, engineering, feature, fix-loop, flow, gh-write, impact, incident, release, test-coverage, test-validation, verify-premise, workflow).
+2. **Loads a lightweight Pi extension** (`extensions/pi-extension.js`) that announces status on session start and provides the `/helicopter-install` command.
+
+On session start, the extension reports:
+
+- `Helicopter-Harness loaded`
+- `Workspace harness detected` — if `.helicopter-harness/HARNESS.md` exists in the current folder
+- `Pi package loaded; workspace harness not installed in this folder` — if not detected
+
+**Installing the workspace harness from Pi:**
+
+Run `/helicopter-install` (or `/hh-install`) inside Pi to install the workspace harness into the current folder. The command asks for confirmation before modifying the workspace.
 
 **Important:**
 
-- This does **not** automatically create `.helicopter-harness/` in every repo. Pi receives the skills and adapter docs, but the workspace harness model still requires running the workspace installer for full harness behavior.
-- To use as a parent-workspace harness with Pi, ask Pi to install it into the current workspace using the fast-path prompt above.
+- `pi install ...` does **not** automatically create `.helicopter-harness/` in every folder. Use `/helicopter-install` to set up the workspace harness in a specific folder.
+- Workspace install remains the source of truth for parent-workspace behavior.
 - Pi packages run with full system access. Inspect source code before installing.
-- **Status: supported** — verified with `pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.0` (Pi v0.80.2).
+- **Status: supported** — verified with Pi v0.80.2 (local path install; remote `git:` install pending v0.2.2 tag).
 
 ### Codex
 

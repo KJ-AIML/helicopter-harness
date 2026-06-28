@@ -1,6 +1,6 @@
 {
   "name": "helicopter-harness",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Parent-workspace AI development harness for multi-repo, multi-agent engineering work.",
   "keywords": ["pi-package", "pi", "helicopter-harness", "coding-agent", "multi-agent"],
   "license": "MIT",
@@ -10,6 +10,7 @@
   },
   "files": [
     ".helicopter-harness/",
+    "extensions/",
     "install.sh",
     "install.ps1",
     "update.sh",
@@ -21,6 +22,7 @@
     "README.md"
   ],
   "pi": {
+    "extensions": ["./extensions/pi-extension.js"],
     "skills": ["./.helicopter-harness/skills"]
   }
 }
