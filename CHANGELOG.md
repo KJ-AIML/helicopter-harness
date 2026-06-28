@@ -17,12 +17,22 @@
 - Expanded `CONTRIBUTING.md` with sections on adding skills, adding adapters, and PR checklist.
 - Replaced placeholder `security@example.invalid` with GitHub Security Advisory disclosure path in `SECURITY.md`.
 - Added explicit parent-directory validation to `install.sh` and `install.ps1` before path operations.
+- Added Cursor adapter (`.helicopter-harness/adapters/cursor/`).
+- Added Ponytail-style multi-agent install matrix (`docs/INSTALL_MATRIX.md`) covering all supported, experimental, and planned install methods.
+- Added Pi adapter docs (`.helicopter-harness/adapters/pi/README.md`) explaining workspace vs package install and safety notes.
+- Added `package.json` with `pi` key for Pi package compatibility (`pi install git:github.com/KJ-AIML/helicopter-harness`).
 
 ### Changed
 
 - Replaced all hardcoded internal workspace paths (`Axtra-Intelion`, `D:\KJ\`) with generic `MyWorkspace` / `my-workspace` across `README.md`, `INSTALL.md`, and `.helicopter-harness/INSTALL.md`.
 - Reset `state/current-task.md` to clean empty template (removed stale "Unset" placeholder values).
 - Updated `MIGRATION_NOTES.md` to reflect removal of legacy bundle (past tense).
+- Updated README install section with Ponytail-style install guide: fast-path prompt, manual workspace install (Windows/macOS/Linux), Pi, Codex, Claude Code, Cursor, and generic agents.
+- Clarified workspace install (primary) vs agent package install (secondary) throughout docs.
+- Documented Codex, Claude Code, Generic agents, and planned adapters (Windsurf, Cline, Gemini, OpenCode, OpenClaw).
+- Updated manifests to include `cursor` and `pi` adapters.
+- Local Pi path install verified with Pi v0.80.2.
+- Remote Pi `git:` install must be verified after tag push.
 
 ## 0.1.2 - 2026-06-21
 

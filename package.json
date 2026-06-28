@@ -1,0 +1,26 @@
+{
+  "name": "helicopter-harness",
+  "version": "0.2.0",
+  "description": "Parent-workspace AI development harness for multi-repo, multi-agent engineering work.",
+  "keywords": ["pi-package", "pi", "helicopter-harness", "coding-agent", "multi-agent"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KJ-AIML/helicopter-harness.git"
+  },
+  "files": [
+    ".helicopter-harness/",
+    "install.sh",
+    "install.ps1",
+    "update.sh",
+    "update.ps1",
+    "uninstall.sh",
+    "uninstall.ps1",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "pi": {
+    "skills": ["./.helicopter-harness/skills"]
+  }
+}

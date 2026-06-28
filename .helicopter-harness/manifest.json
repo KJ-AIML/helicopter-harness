@@ -38,7 +38,8 @@
     "claude",
     "codex",
     "cursor",
-    "generic"
+    "generic",
+    "pi"
   ],
   "hooks_summary": {
     "safe_context_injection_hooks": [

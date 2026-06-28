@@ -34,25 +34,97 @@ Current adapters:
 - Codex: `.helicopter-harness/adapters/codex/`
 - Claude Code: `.helicopter-harness/adapters/claude/`
 - Cursor: `.helicopter-harness/adapters/cursor/`
+- Pi: `.helicopter-harness/adapters/pi/` (experimental)
 - Generic local coding agents: `.helicopter-harness/adapters/generic/`
 
-Future adapters can be added for Windsurf, Cline, Gemini, Pi, OpenCode, and other local agent runtimes. The adapter is not the source of truth; the harness is.
+Planned adapters: Windsurf, Cline, Gemini, OpenCode, OpenClaw.
 
-## Quick Install
+The adapter is not the source of truth; the harness is.
 
-Windows PowerShell:
+## Install
+
+Helicopter-Harness has two install modes. The **workspace harness** is the primary mode — it installs `.helicopter-harness/` into your parent workspace and is what most users want. The **agent package** mode exposes harness skills/rules to a specific agent host (Pi, etc.) without replacing the workspace model.
+
+### Fast path: ask your agent to install into current workspace
+
+Paste this prompt to any coding agent:
+
+```
+Install this repo into the current folder as a parent-workspace harness:
+
+https://github.com/KJ-AIML/helicopter-harness
+
+Use the latest stable tag (v0.2.0). Do not install globally. Treat the current
+directory as the workspace. Verify .helicopter-harness/HARNESS.md, AGENTS.md,
+and CLAUDE.md exist after install.
+```
+
+### Manual workspace install — Windows
 
 ```powershell
-.\install.ps1 -Parent "D:\MyWorkspace"
+git clone https://github.com/KJ-AIML/helicopter-harness.git
+cd helicopter-harness
+git checkout v0.2.0
+.\install.ps1 -Parent "<current workspace path>"
 ```
 
-macOS/Linux:
+Default parent is the current directory — omit `-Parent` to install into `.`.
+
+### Manual workspace install — macOS/Linux
 
 ```bash
-./install.sh "$HOME/work/my-workspace"
+git clone https://github.com/KJ-AIML/helicopter-harness.git
+cd helicopter-harness
+git checkout v0.2.0
+./install.sh "<current workspace path>"
 ```
 
-## Safe Install
+Default parent is the current directory — omit the argument to install into `.`.
+
+### Pi agent harness
+
+```bash
+pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.0
+```
+
+This installs the Pi-facing package/adapter. It exposes harness skills to Pi via the `pi` key in `package.json`.
+
+**Important:**
+
+- This does **not** automatically create `.helicopter-harness/` in every repo. Pi receives the skills and adapter docs, but the workspace harness model still requires running the workspace installer for full harness behavior.
+- To use as a parent-workspace harness with Pi, ask Pi to install it into the current workspace using the fast-path prompt above.
+- Pi packages run with full system access. Inspect source code before installing.
+- **Status: experimental** — local path install verified with Pi v0.80.2; `git:` install pending v0.2.0 tag.
+
+### Codex
+
+Current supported path:
+
+1. Install the workspace harness (see above).
+2. The installer creates `AGENTS.md` in the parent workspace root pointing to `.helicopter-harness/adapters/codex/AGENTS.md`.
+3. Codex reads the adapter, which directs it to the harness source of truth.
+
+No Codex marketplace plugin is available. The workspace adapter is the supported path.
+
+### Claude Code
+
+Current supported path:
+
+1. Install the workspace harness (see above).
+2. The installer creates `CLAUDE.md` in the parent workspace root pointing to `.helicopter-harness/adapters/claude/CLAUDE.md`.
+3. Claude Code reads the adapter, which directs it to the harness source of truth.
+4. Optional hooks require manual review and consent — see `.helicopter-harness/hooks/README.md`.
+
+No Claude Code marketplace plugin is available. The workspace adapter is the supported path.
+
+### Generic agents
+
+1. Open your agent in the workspace root.
+2. Give it the install prompt with the repo URL (see "Fast path" above).
+3. All tasks should start by reading `.helicopter-harness/HARNESS.md`.
+4. Adapter instructions: `.helicopter-harness/adapters/generic/AGENT_INSTRUCTIONS.md`.
+
+### Safe install
 
 Inspect scripts before running them. They copy the harness and create minimal adapter pointer files only when those files do not already exist.
 
@@ -65,46 +137,6 @@ They do not:
 - enable hooks automatically
 
 If `AGENTS.md` or `CLAUDE.md` already exists, the installer prints the snippet to append manually.
-
-## Windows Install
-
-Default parent is the current directory:
-
-```powershell
-.\install.ps1
-```
-
-Explicit parent:
-
-```powershell
-.\install.ps1 -Parent "D:\MyWorkspace"
-```
-
-This installs to:
-
-```text
-D:\MyWorkspace\.helicopter-harness
-```
-
-## macOS/Linux Install
-
-Default parent is the current directory:
-
-```bash
-./install.sh
-```
-
-Explicit parent:
-
-```bash
-./install.sh "$HOME/work/my-workspace"
-```
-
-This installs to:
-
-```text
-$HOME/work/my-workspace/.helicopter-harness
-```
 
 ## First-Run Prompt
 
