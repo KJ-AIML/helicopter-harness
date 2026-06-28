@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.1 - 2026-06-28
+
+### Docs-only hotfix
+
+- Clarified Pi git install status: `pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.0` is verified and supported.
+- Added post-install cleanup note: source checkout folder (e.g., `hh-source/`) can be deleted after workspace install; do not delete `.helicopter-harness/`.
+- Added "What next after install?" section with step-by-step guidance: start agent, read HARNESS.md, clone/create target repo, create repo profile, run test-validation in audit-only mode.
+- Updated Pi adapter docs with post-install cleanup note.
+
 ## 0.2.0 - 2026-06-26
 
 ### Breaking Changes

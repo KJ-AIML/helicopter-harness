@@ -52,6 +52,8 @@ git checkout v0.2.0
 .\install.ps1 -Parent "<workspace path>"
 ```
 
+**Post-install cleanup:** If you cloned the repo only to run the workspace installer, the source checkout folder (e.g., `helicopter-harness/`) can be deleted after successful install. The harness is now in `.helicopter-harness/` in your workspace. **Do not delete `.helicopter-harness/`** — that is the installed harness.
+
 ## How Pi should use Helicopter-Harness
 
 When the workspace harness is installed:

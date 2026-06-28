@@ -138,6 +138,12 @@ They do not:
 
 If `AGENTS.md` or `CLAUDE.md` already exists, the installer prints the snippet to append manually.
 
+### Post-install cleanup
+
+If you cloned the repo only to run the workspace installer, the source checkout folder (e.g., `hh-source/`) can be deleted after successful install. The harness is now in `.helicopter-harness/` in your workspace.
+
+**Do not delete `.helicopter-harness/`** — that is the installed harness.
+
 ## First-Run Prompt
 
 ```text
@@ -145,6 +151,16 @@ Start from this parent workspace. Read the Helicopter-Harness source of truth fi
 ```
 
 For a repo checkout, the source of truth is `.helicopter-harness/HARNESS.md`. For an installed Windows parent workspace using `install.ps1`, it is `<Parent>\.helicopter-harness\HARNESS.md`.
+
+## What next after install?
+
+1. **Start your agent from the parent workspace** — open your coding agent (Pi, Codex, Claude Code, etc.) in the workspace root where `.helicopter-harness/` lives.
+2. **Read the harness** — the agent should read `.helicopter-harness/HARNESS.md` as the source of truth.
+3. **Clone or create a target repo** — the repo you want to work on should be inside the parent workspace.
+4. **Create a repo profile** — copy `.helicopter-harness/templates/repo-profile.md` to `.helicopter-harness/profiles/<repo>.md` and fill in the repo-specific details (branch policy, test commands, generated-file policy, etc.).
+5. **Run test-validation** — before making code edits, run the `test-validation` skill in audit-only mode to verify the profile's verification command works and is safe.
+
+Only then should the agent start making code changes. The harness forces read-before-write: understand the repo before editing it.
 
 ## Example Session
 
