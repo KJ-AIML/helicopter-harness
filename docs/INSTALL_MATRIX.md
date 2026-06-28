@@ -20,7 +20,7 @@ These expose harness rules/skills to a specific agent host. They do not replace 
 
 | Host | Command | Status | What it installs | Notes |
 |------|---------|--------|------------------|-------|
-| Pi | `pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.0` | **experimental** | Pi package: skills from `.helicopter-harness/skills/` exposed via `package.json` `pi` key | Does not create `.helicopter-harness/` in any workspace. Local path verified with Pi v0.80.2; `git:` pending v0.2.0 tag |
+| Pi | `pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.0` | **supported** | Pi package: skills from `.helicopter-harness/skills/` exposed via `package.json` `pi` key | Does not create `.helicopter-harness/` in any workspace. Verified with Pi v0.80.2 |
 | Codex | Workspace `AGENTS.md` → `.helicopter-harness/adapters/codex/AGENTS.md` | **supported** | Adapter pointer file created by workspace installer | No marketplace plugin. Requires workspace install first |
 | Claude Code | Workspace `CLAUDE.md` → `.helicopter-harness/adapters/claude/CLAUDE.md` | **supported** | Adapter pointer file created by workspace installer. Optional hooks require review/consent | No marketplace plugin. Requires workspace install first |
 | Cursor | Workspace `.cursor/rules/` → `.helicopter-harness/adapters/cursor/CURSOR.md` | **supported** | Adapter created by workspace installer | Requires workspace install first |

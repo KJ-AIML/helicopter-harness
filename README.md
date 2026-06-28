@@ -34,7 +34,7 @@ Current adapters:
 - Codex: `.helicopter-harness/adapters/codex/`
 - Claude Code: `.helicopter-harness/adapters/claude/`
 - Cursor: `.helicopter-harness/adapters/cursor/`
-- Pi: `.helicopter-harness/adapters/pi/` (experimental)
+- Pi: `.helicopter-harness/adapters/pi/`
 - Generic local coding agents: `.helicopter-harness/adapters/generic/`
 
 Planned adapters: Windsurf, Cline, Gemini, OpenCode, OpenClaw.
@@ -94,7 +94,7 @@ This installs the Pi-facing package/adapter. It exposes harness skills to Pi via
 - This does **not** automatically create `.helicopter-harness/` in every repo. Pi receives the skills and adapter docs, but the workspace harness model still requires running the workspace installer for full harness behavior.
 - To use as a parent-workspace harness with Pi, ask Pi to install it into the current workspace using the fast-path prompt above.
 - Pi packages run with full system access. Inspect source code before installing.
-- **Status: experimental** — local path install verified with Pi v0.80.2; `git:` install pending v0.2.0 tag.
+- **Status: supported** — verified with `pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.0` (Pi v0.80.2).
 
 ### Codex
 

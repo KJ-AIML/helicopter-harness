@@ -31,8 +31,7 @@
 - Clarified workspace install (primary) vs agent package install (secondary) throughout docs.
 - Documented Codex, Claude Code, Generic agents, and planned adapters (Windsurf, Cline, Gemini, OpenCode, OpenClaw).
 - Updated manifests to include `cursor` and `pi` adapters.
-- Local Pi path install verified with Pi v0.80.2.
-- Remote Pi `git:` install must be verified after tag push.
+- Pi install verified (both local path and `git:github.com/KJ-AIML/helicopter-harness@v0.2.0`) with Pi v0.80.2.
 
 ## 0.1.2 - 2026-06-21
 

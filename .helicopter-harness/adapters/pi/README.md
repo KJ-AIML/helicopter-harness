@@ -18,7 +18,7 @@ This installs the Pi package. Pi discovers harness skills via the `pi` key in `p
 - Does **not** create `.helicopter-harness/` in any workspace.
 - Does **not** set up parent-workspace harness state, profiles, or adapter pointer files.
 
-**Status: experimental.** Local path install verified with Pi v0.80.2 (`pi install /path/to/helicopter-harness` — Pi parsed `package.json` `pi` key and registered the package). The `git:github.com/KJ-AIML/helicopter-harness@v0.2.0` syntax is pending the v0.2.0 tag being pushed to GitHub.
+**Status: supported.** Verified with `pi install git:github.com/KJ-AIML/helicopter-harness@v0.2.0` (Pi v0.80.2). Pi resolved the GitHub tag, cloned to `~/.pi/agent/git/`, parsed `package.json` `pi` key, registered the package, and exposed the skills path.
 
 ### 2. Workspace harness install (recommended)
 
